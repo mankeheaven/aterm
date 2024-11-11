@@ -1,8 +1,12 @@
 import Versions from './components/Versions'
 import electronLogo from './assets/electron.svg'
+import { ipc2main } from './utils/ipc2main'
 
-function App(): JSX.Element {
-  const ipcHandle = (): void => window.electron.ipcRenderer.send('ping')
+function App() {
+  const ipcHandle =  async () => { 
+    const data = await ipc2main("ping") as string
+    console.log(data)
+  }
 
   return (
     <>
