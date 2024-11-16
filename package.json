@@ -1,12 +1,16 @@
 {
   "name": "aterm",
   "version": "1.0.0",
-  "description": "An Electron application with React and TypeScript",
+  "description": "An ssh, telnet, serial, vnc terminal, and can access the browser and some tool plug-ins",
   "main": "./out/main/index.js",
   "author": "mankeheaven",
-  "homepage": "https://electron-vite.org",
+  "homepage": "https://github.com/mankeheaven/aterm",
+  "engines": {
+    "node": ">=14"
+  },
   "scripts": {
-    "format": "prettier --write .",
+    "prepare": "husky install",
+    "prettier": "lint-staged",
     "lint": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
     "typecheck:node": "tsc --noEmit -p tsconfig.node.json --composite false",
     "typecheck:web": "tsc --noEmit -p tsconfig.web.json --composite false",
@@ -23,7 +27,13 @@
   "dependencies": {
     "@electron-toolkit/preload": "^3.0.1",
     "@electron-toolkit/utils": "^3.0.0",
-    "electron-updater": "^6.1.7"
+    "antd": "^5.22.1",
+    "classnames": "^2.5.1",
+    "dockview-react": "^2.0.0",
+    "electron-updater": "^6.1.7",
+    "mobx": "^6.13.5",
+    "mobx-react": "^9.1.1",
+    "styled-components": "^6.1.13"
   },
   "devDependencies": {
     "@electron-toolkit/eslint-config-prettier": "^2.0.0",
@@ -38,10 +48,17 @@
     "electron-vite": "^2.3.0",
     "eslint": "^8.57.0",
     "eslint-plugin-react": "^7.34.3",
-    "prettier": "^3.3.2",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
+    "prettier": "^3.3.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "typescript": "^5.5.2",
     "vite": "^5.3.1"
+  },
+  "lint-staged": {
+    "({src,public,configs,scripts})/**/*.{js,jsx,ts,tsx,json,css,scss,md,html}": [
+      "prettier --write"
+    ]
   }
 }

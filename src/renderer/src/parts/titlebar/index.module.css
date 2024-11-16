@@ -1,0 +1,36 @@
+.logo {
+  padding: 0 12px;
+  display: flex;
+}
+
+.logoImg {
+  width: 24px;
+  height: 24px;
+}
+
+.menu {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 14px;
+}
+
+.menuItem {
+  padding: 0 10px;
+  height: 36px;
+  line-height: 36px;
+}
+.menuItem:hover {
+  background-color: var(--bg-hover-menu);
+}
+
+.title {
+  position: relative;
+  flex: 1;
+  padding-left: calc(50vw - 85px - 50px);
+  padding-right: 140px;
+  height: 36px;
+  line-height: 36px;
+}

@@ -1,34 +1,83 @@
+@import '../../../../node_modules/dockview-react/dist/styles/dockview.css';
+
 :root {
-  --ev-c-white: #ffffff;
-  --ev-c-white-soft: #f8f8f8;
-  --ev-c-white-mute: #f2f2f2;
+  --fallback-title-bar-height: 32px;
+  --status-height: 26px;
 
-  --ev-c-black: #1b1b1f;
-  --ev-c-black-soft: #222222;
-  --ev-c-black-mute: #282828;
+  --bg-titlebar: #3c3c3c;
+  --bg-activity: #3c3c3c;
+  --bg-siderbar: #252526;
+  --bg-panel: #1c1c1c;
+  --bg-main: #1e1e1e;
+  --bg-maintop: #2d2d2d;
 
-  --ev-c-gray-1: #515c67;
-  --ev-c-gray-2: #414853;
-  --ev-c-gray-3: #32363f;
+  --bg-dark-1: #1c1c1c;
+  --bg-dark-2: #1e1e1e;
+  --bg-dark-3: #252526;
+  --bg-dark-4: #2d2d2d;
+  --bg-dark-5: #333333;
+  --bg-dark-6: #444444;
+  --bg-dark-7: #676767;
 
-  --ev-c-text-1: rgba(255, 255, 245, 0.86);
-  --ev-c-text-2: rgba(235, 235, 245, 0.6);
-  --ev-c-text-3: rgba(235, 235, 245, 0.38);
+  --bg-light-1: #eeeeee;
+  --bg-light-2: #dddddd;
+  --bg-light-3: #bcbcbc;
+  --bg-light-4: #a1a1a1;
+  --bg-light-5: #808080;
 
-  --ev-button-alt-border: transparent;
-  --ev-button-alt-text: var(--ev-c-text-1);
-  --ev-button-alt-bg: var(--ev-c-gray-3);
-  --ev-button-alt-hover-border: transparent;
-  --ev-button-alt-hover-text: var(--ev-c-text-1);
-  --ev-button-alt-hover-bg: var(--ev-c-gray-2);
+  --bg-modal-header: #2d2d2d;
+  --bg-modal-content: #333333;
+  --bg-hover-menu: #444444;
+  --bg-menu: #333333;
+  --bg-tree: #2d2d2d;
+  --bg-input: #252525;
+  --bg-button: #252525;
+  --bg-button-hover: #2d2d2d;
+
+  --color-light: #ffffff;
+  --color-normal: #bcbcbc;
+  --color-lighter: #808080;
+  --color-dark: #000000;
+  --color-dark-3: #252526;
+  --color-dark-6: #444444;
+  --color-primary: #007acc;
+  --color-primary-hover: #398bd5;
+  --color-tab-icon: #4c9aba;
+  --color-danger: #ff0000;
+  --color-warn: #eba006;
+  --color-secure: #5aba28;
+
+  --border-normal: #2d2d2d;
+  --border-lighter: #676767;
+  --border-light: #333333;
+  --border-lightest: #ededed;
+  --border-darker: #1e1e1e;
 }
 
-:root {
-  --color-background: var(--ev-c-black);
-  --color-background-soft: var(--ev-c-black-soft);
-  --color-background-mute: var(--ev-c-black-mute);
-
-  --color-text: var(--ev-c-text-1);
+.dockview-theme-vs {
+  --dv-background-color: #1e1e1e;
+  --dv-paneview-active-outline-color: dodgerblue;
+  --dv-tabs-and-actions-container-font-size: 13px;
+  --dv-tabs-and-actions-container-height: 28px;
+  --dv-drag-over-background-color: rgba(83, 89, 93, 0.5);
+  --dv-drag-over-border-color: white;
+  --dv-tabs-container-scrollbar-color: rgba(255, 255, 255, 0.1);
+  --dv-icon-hover-background-color: rgba(90, 93, 94, 0.31);
+  --dv-floating-box-shadow: 8px 8px 8px 0px rgba(83, 89, 93, 0.5);
+  --dv-overlay-z-index: 999;
+  --dv-group-view-background-color: #1e1e1e;
+  --dv-tabs-and-actions-container-background-color: #252526;
+  --dv-activegroup-visiblepanel-tab-background-color: #1e1e1e;
+  --dv-activegroup-hiddenpanel-tab-background-color: #2d2d2d;
+  --dv-inactivegroup-visiblepanel-tab-background-color: #1e1e1e;
+  --dv-inactivegroup-hiddenpanel-tab-background-color: #2d2d2d;
+  --dv-tab-divider-color: #1e1e1e;
+  --dv-activegroup-visiblepanel-tab-color: white;
+  --dv-activegroup-hiddenpanel-tab-color: #969696;
+  --dv-inactivegroup-visiblepanel-tab-color: #8f8f8f;
+  --dv-inactivegroup-hiddenpanel-tab-color: #626262;
+  --dv-separator-border: #333333;
+  --dv-paneview-header-border-color: rgba(204, 204, 204, 0.2);
 }
 
 *,

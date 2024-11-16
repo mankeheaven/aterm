@@ -1,38 +1,34 @@
-import Versions from './components/Versions'
-import electronLogo from './assets/electron.svg'
-import { ipc2main } from './utils/ipc2main'
+import { Splitter } from 'antd'
+import Titlebar from './parts/titlebar'
+import { env } from './utils/env'
+import Activity from './parts/activity'
+import Status from './parts/status'
+import Siderbar from './parts/siderbar'
+import Main from './parts/main'
 
-function App() {
-  const ipcHandle =  async () => { 
-    const data = await ipc2main("ping") as string
-    console.log(data)
-  }
+//TODO spliter bar background color
+const App = () => {
+  const platformClass = env.isMac ? 'macApp' : env.isLinux ? 'linuxApp' : 'windowsApp'
 
   return (
-    <>
-      <img alt="logo" className="logo" src={electronLogo} />
-      <div className="creator">Powered by electron-vite</div>
-      <div className="text">
-        Build an Electron app with <span className="react">React</span>
-        &nbsp;and <span className="ts">TypeScript</span>
-      </div>
-      <p className="tip">
-        Please try pressing <code>F12</code> to open the devTool
-      </p>
-      <div className="actions">
-        <div className="action">
-          <a href="https://electron-vite.org/" target="_blank" rel="noreferrer">
-            Documentation
-          </a>
+    <div className={`app ${platformClass}`}>
+      <div className="parts">
+        <Titlebar />
+        <div className="contents nonDraggable">
+          <Activity />
+
+          <Splitter>
+            <Splitter.Panel defaultSize={200} min={0} max={600}>
+              <Siderbar />
+            </Splitter.Panel>
+            <Splitter.Panel>
+              <Main />
+            </Splitter.Panel>
+          </Splitter>
         </div>
-        <div className="action">
-          <a target="_blank" rel="noreferrer" onClick={ipcHandle}>
-            Send IPC
-          </a>
-        </div>
+        <Status />
       </div>
-      <Versions></Versions>
-    </>
+    </div>
   )
 }
 

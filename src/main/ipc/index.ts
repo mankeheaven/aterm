@@ -1,8 +1,9 @@
-import { ipcMain } from 'electron'
+import './toggle-window'
 
+import { ipcMain } from 'electron'
 export const handleIpc = () => {
   ipcMain.handle('ping', () => {
     console.log('pong')
-    return "pong"
+    return 'pong'
   })
 }

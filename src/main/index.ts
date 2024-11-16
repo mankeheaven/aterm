@@ -1,28 +1,49 @@
 import { app, BrowserWindow } from 'electron'
-import { electronApp, optimizer } from '@electron-toolkit/utils'
+import { optimizer } from '@electron-toolkit/utils'
 import createWindow from './window'
 import { handleIpc } from './ipc'
+import manageStore from './store/manage-store'
+import { isDev } from './utils/env'
 
-app.whenReady().then(() => {
-  electronApp.setAppUserModelId('com.electron')
+app.commandLine.appendSwitch('ignore-certificate-errors')
+app.commandLine.appendSwitch('disable-site-isolation-trials')
 
-  app.on('browser-window-created', (_, window) => {
-    optimizer.watchWindowShortcuts(window)
-  })
+const getTheLock = app.requestSingleInstanceLock()
 
-  app.on('activate', function () {
-    if (BrowserWindow.getAllWindows().length === 0) {
-      createWindow()
+if (!getTheLock) {
+  app.quit()
+} else {
+  app.on('second-instance', (event) => {
+    event.preventDefault()
+    if (!!manageStore?.mainWindow) {
+      const mainWindow = manageStore.mainWindow
+      if (mainWindow.isMinimized()) mainWindow.restore()
+      mainWindow.focus()
     }
   })
 
-  handleIpc()
+  app.whenReady().then(() => {
 
-  createWindow()
-})
+    app.on('browser-window-created', (_, window) => {
+      optimizer.watchWindowShortcuts(window)
+    })
 
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit()
-  }
-})
+    app.on('activate', function () {
+      if (BrowserWindow.getAllWindows().length === 0) {
+        createWindow()
+      }
+    })
+
+    handleIpc()
+
+    createWindow()
+
+    isDev() && manageStore?.mainWindow?.webContents.openDevTools();
+  })
+
+  app.on('window-all-closed', () => {
+    if (process.platform !== 'darwin') {
+      app.quit()
+    }
+  })
+}
